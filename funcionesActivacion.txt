@@ -1,0 +1,167 @@
+$$
+    Funcion Lineal
+$$
+
+from matplotlib import pyplot
+import pylab as plt
+import numpy as np
+
+def f(x):
+    return 4*x-7
+
+#Rango de valores de la cuadrícula
+x = range(-10, 10)
+
+# línea de la cuadrícula en el fondo
+plt.grid()
+
+# titulo
+plt.title ('Lineal')
+
+#Limites de los ejes.
+pyplot.xlim(-11, 11)
+pyplot.ylim(-11, 11)
+
+#Se le pasan los valares a la función con ayuda de un bucle.
+pyplot.plot(x, [f(i) for i in x])
+
+# Gráfico.
+pyplot.show()
+
+------- º ------------ º ---------------- º --------- º ------------ º ------------- º -------------
+
+$$
+    Funcion Sigmoide
+$$
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# linespace: genera una matriz desde el valor inicial y final con número solicitado de elementos.
+x = plt.linspace(-10,10,10)
+y = plt.linspace(-10,10,10)
+
+# prepararando el gráfico,  el color red o blue y la etiqueta
+plt.plot(x, sigmoid(x), 'r', label='linspace(-10,10,10)')
+plt.plot(y, sigmoid(y), 'b', label='linspace(-10,10,100)')
+
+# línea de la cuadrícula en el fondo.
+plt.grid()
+
+plt.xlabel('eje X')
+plt.ylabel('eke Y')
+
+# Titulo
+plt.title('Sigmoide')
+
+# Mostramos el gráfico.
+plt.show()
+
+------- º ------------ º ---------------- º --------- º ------------ º ------------- º -------------
+
+$$
+    Funcion Escalonada
+$$
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+u = lambda t: np.piecewise(t,t>=0,[1,0])
+a = -10
+b = 10
+
+
+# Proceso 
+t = np.arange(a, b, dt)
+u0 = u(t-0)
+
+# Grafico
+plt.figure()
+plt.plot(t,u0)
+
+plt.xlabel('eje x')
+plt.ylabel('eje y')
+
+# línea de la cuadrícula en el fondo.
+plt.grid()
+
+# Título y subtítulo
+plt.title ('Escalonada')
+
+# Mostramos el gráfico.
+plt.show()
+
+
+------- º ------------ º ---------------- º --------- º ------------ º ------------- º -------------
+
+$$
+    Funcion Tangente Hiperbólica
+$$
+
+pip install tensorflow
+
+import tensorflow as tf
+import numpy as np
+import math
+import pylab as plt
+
+#Crear un vector de tamaño 15 con valores de -7 a 7
+a= np.linspace(-7, 7, 15)
+
+#Funciona tanh
+#Almacena el resultado en 'b'
+b=tf.nn.tanh(a, name='tanh')
+
+#Inicia sesio de tensorflow 
+#biblioteca de código abierto dirigida al aprendizaje automático a través de una serie de tareas.
+with tf.Session() as sess:
+    plt.plot(a, sess.run(b), color='blue', marker="")
+    plt.title("Tangente hiperbolica")
+    plt.xlabel("eje x")
+    plt.ylabel("eje y")
+
+#Mostrando grafico
+plt.show()
+
+
+------- º ------------ º ---------------- º --------- º ------------ º ------------- º -------------
+$$
+    Funcion Gauss
+$$
+
+import numpy as np
+import math
+import pylab as plt
+from scipy.stats import norm
+
+#Constantes
+mu=998.8
+sigma= 73.10
+x1= 900
+x2= 1100
+
+#Calculando la tranformacion de z
+z1= (x1-mu)/sigma
+z2= (x2-mu)/sigma
+
+#Rango de x en especifico
+x= np.arange(z1, z2, 0.001)
+
+#Rango completo de x 
+x_all= np.arange(-10,10,0.001)
+
+#mean=0, stdev=1, ya que se calculo la transformacion de z
+y= norm.pdf(x,0,1)
+y2= norm.pdf(x_all,0,1)
+
+#Grafico
+fig, ax= plt.subplots(figsize=(6,5))
+ax.plot(x_all,y2)
+ax.set_xlim([-6,6])
+ax.set_title('Gauus')
+ax.set_xlabel('eje x')
+ax.set_ylabel('ejer y')
+
+#Mostrando el grafico
+plt.show()
+
